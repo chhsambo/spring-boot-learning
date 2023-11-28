@@ -22,8 +22,22 @@ public class HomeController {
     }
 
     @PostMapping("/new-book")
-    public String newBook(@ModelAttribute Book newBook) {
+    public String newBook(@ModelAttribute NewBook newBook) {
         bookService.create(newBook);
         return "redirect:/";
+    }
+
+    @PostMapping("/multi-field-search")
+    public String multiFieldSearch(@ModelAttribute BookSearch search, Model model) {
+        List<BookEntity> searchResult = bookService.search(search);
+        model.addAttribute("books", searchResult);
+        return "index";
+    }
+
+    @PostMapping("/universal-search")
+    public String universalSearch(@ModelAttribute UniversalSearch search, Model model) {
+        List<BookEntity> searchResults = bookService.search(search);
+        model.addAttribute("books", searchResults);
+        return "index";
     }
 }

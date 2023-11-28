@@ -1,7 +1,6 @@
 package com.sambochhay.springbootlearning;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,7 +14,12 @@ public class ApiController {
     }
 
     @GetMapping("/api/books")
-    public List<Book> all() {
+    public List<BookEntity> all() {
         return bookService.getBooks();
+    }
+
+    @PostMapping("/api/books")
+    public BookEntity newBook(@RequestBody NewBook newBook) {
+        return bookService.create(newBook);
     }
 }

@@ -1,5 +1,4 @@
 package com.sambochhay.springbootlearning;
 
-record Book(String title) {
-
+record UniversalSearch(String value) {
 }
